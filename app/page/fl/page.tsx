@@ -1,17 +1,23 @@
-import { View, Text, TextInput, TouchableOpacity, Animated } from "react-native";
+import { Button, View, Text, TextInput, TouchableOpacity, Animated } from "react-native";
 import styles from "./style";
 import Svg, { Circle, Path } from "react-native-svg"
+import { AnimatePresence,MotiView } from "moti";
+import { router } from "expo-router";
 
 //Components
 import Profile from "../../components/Profile"
 import AddStock from "../../components/fl/AddStock";
+import FLStock from "@/app/components/fl/Stock";
 
 //State
 import State from "@/app/hooks/toogleState";
 
+
+
 export default function FlPage() {
 
 	//State
+	const toogleAddStock = State(state => state.toogleAddStock)
 	const setToogleAddStock = State(state => state.setToogleAddStock)
 
 	return(
@@ -27,13 +33,27 @@ export default function FlPage() {
 						<TextInput placeholder="Cari Stok" placeholderTextColor={'#B6B6B6'} style={styles.searchBar}/>
 					</View>
 					<TouchableOpacity onPress={setToogleAddStock} style={styles.addButton}>
-						<Svg width={16} height={16} viewBox="0 0 29 29" fill="none">
-							<Path d="M28.8594 16.86H16.8594V28.86H12.8594V16.86H0.859375V12.86H12.8594V0.859985H16.8594V12.86H28.8594V16.86Z" fill="white"/>
-						</Svg>
+						<MotiView
+							from={{rotate: '0deg'}}
+							animate={{rotate: toogleAddStock? '135deg' : '0'}}
+							transition={{default: {type: 'timing', duration: 0}}}
+						>
+							<Svg width={16} height={16} viewBox="0 0 29 29" fill="none">
+								<Path d="M28.8594 16.86H16.8594V28.86H12.8594V16.86H0.859375V12.86H12.8594V0.859985H16.8594V12.86H28.8594V16.86Z" fill="white"/>
+							</Svg>
+						</MotiView>
 					</TouchableOpacity>
 				</View>
 			</View>
-			<AddStock/>
+			<AnimatePresence>
+				{toogleAddStock &&
+					<AddStock/>
+				}
+			</AnimatePresence>
+			<Text>Samsung</Text>
+			<FLStock/>
+			<Button title="Halaman A" onPress={() => router.push('/page/fl/detail/ss' as any)} />
+      <Button title="Halaman B" onPress={() => router.push('./page/fl/detail/vv' as any)} />
 		</View>
 	)
 }
