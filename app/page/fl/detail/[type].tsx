@@ -1,34 +1,3 @@
-// // frontend/fe1/app/page/fl/detail/[type].tsx
-// import { View, Text, Button } from 'react-native';
-// import { useLocalSearchParams, router } from 'expo-router';
-// import produkList from './data';
-
-// export default function DetailPage() {
-//   const { type } = useLocalSearchParams();
-
-//   // Filter produk sesuai type
-//   const produkTampil = produkList.filter(p => p.type === type);
-
-//   return (
-//     <View style={{ padding: 20 }}>
-//       <Text style={{ fontSize: 20, marginBottom: 10 }}>
-//         Halaman {type}
-//       </Text>
-
-//       {produkTampil.length > 0 ? (
-//         produkTampil.map(item => (
-//           <Text key={item.id}>
-//             {item.nama} - Rp{item.harga}
-//           </Text>
-//         ))
-//       ) : (
-//         <Text>Data tidak ditemukan</Text>
-//       )}
-//       <Button title='back' onPress={() => router.back()}/>
-//     </View>
-//   );
-// }
-
 import { useState, useEffect, useRef } from "react";
 import { View, Text, TextInput, Button } from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
