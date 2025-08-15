@@ -1,6 +1,6 @@
-import { Button, View, Text, TextInput, TouchableOpacity, Animated } from "react-native";
+import { Button, View, Text, TextInput, TouchableOpacity, Animated, ScrollView } from "react-native";
 import styles from "./style";
-import Svg, { Circle, Path } from "react-native-svg"
+import Svg, { Circle, Path, Rect} from "react-native-svg"
 import { AnimatePresence,MotiView } from "moti";
 import { router } from "expo-router";
 
@@ -8,6 +8,7 @@ import { router } from "expo-router";
 import Profile from "../../components/Profile"
 import AddStock from "../../components/fl/AddStock";
 import FLStock from "@/app/components/fl/Stock";
+import { SamsungButton, XiaomiButton, VivoButton, OppoButton, RealmeButton, TecnoButton, IphoneButton, InfinixButton } from "@/app/components/fl/BrandButton";
 
 //State
 import State from "@/app/hooks/toogleState";
@@ -25,6 +26,16 @@ export default function FlPage() {
 			<Profile />
 			<View style={styles.stockContainer}>
 				<Text style={styles.stockTitle}>Stok Barang</Text>
+				<View style={{flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 16, justifyContent: 'center'}}>
+					<SamsungButton route="/page/fl/detail/ss"/>
+					<XiaomiButton route="/page/fl/detail/ss"/>
+					<VivoButton route="/page/fl/detail/ss"/>
+					<OppoButton route="/page/fl/detail/ss"/>
+					<RealmeButton route="/page/fl/detail/ss"/>
+					<InfinixButton route="/page/fl/detail/ss"/>
+					<TecnoButton route="/page/fl/detail/ss"/>
+					<IphoneButton route="/page/fl/detail/ss"/>
+				</View>
 				<View style={styles.searchContainer}>
 					<View style={styles.searchWrapper}>
 						<Svg width="16" height="16" viewBox="0 0 21 21" fill="none">

@@ -7,6 +7,7 @@ export default function DetailPage() {
   const {type} = useLocalSearchParams()
 
   const [json, setJson] = useState<any[]>([])
+  const [searchQuery, setSearchQuery] = useState<any>('')
 
   useEffect(() => {
     const ambilData = async () => {
