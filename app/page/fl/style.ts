@@ -1,4 +1,7 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const screenWidth = Dimensions.get('window').width;
+const gapValue = screenWidth * 0.05;
 
 const styles = StyleSheet.create({
     container: {
@@ -38,6 +41,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 100
+    },
+    brandButton: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        gap: 16,
+        justifyContent: 'flex-start'
     }
 })
 

@@ -12,7 +12,7 @@ export default function DetailPage() {
   useEffect(() => {
     const ambilData = async () => {
       try {
-        const res = await fetch("https://755d5a95cf3a.ngrok-free.app/data")
+        const res = await fetch("https://f53d3d7b446f.ngrok-free.app/data")
         const data = await res.json()
         const filtered = data.filter((p : any) => p.brand === type)
         setJson(filtered)
