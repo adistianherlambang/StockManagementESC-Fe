@@ -9,7 +9,7 @@ const Profile = () => {
           <Text style={styles.ppText}>A</Text>
         </View>
         <View style={styles.name}>
-          <Text>Bismillah <Text style={styles.span}>USER!</Text></Text>
+          <Text>Bismillah <Text style={styles.span}>USER👋</Text></Text>
           <Text style={styles.sub}>ESC Team</Text>
         </View>
       </View>
