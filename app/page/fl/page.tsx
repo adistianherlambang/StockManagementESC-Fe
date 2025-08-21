@@ -41,14 +41,14 @@ export default function FlPage() {
 				<View style={styles.stockContainer}>
 					<Text style={styles.stockTitle}>Pilih Brand</Text>
 					<View style={styles.brandButton}>
-						<SamsungButton route="/page/fl/detail/samsung"/>
-						<XiaomiButton route="/page/fl/detail/xiaomi"/>
-						<VivoButton route="/page/fl/detail/vivo"/>
+						<SamsungButton route="/page/fl/detail/Samsung"/>
+						<XiaomiButton route="/page/fl/detail/Xiaomi"/>
+						<VivoButton route="/page/fl/detail/Vivo"/>
 						<OppoButton route="/page/fl/detail/oppo"/>
-						<RealmeButton route="/page/fl/detail/realme"/>
-						<InfinixButton route="/page/fl/detail/infinix"/>
-						<TecnoButton route="/page/fl/detail/tecno"/>
-						<IphoneButton route="/page/fl/detail/iphone"/>
+						<RealmeButton route="/page/fl/detail/Realme"/>
+						<InfinixButton route="/page/fl/detail/Infinix"/>
+						<TecnoButton route="/page/fl/detail/Tecno"/>
+						<IphoneButton route="/page/fl/detail/Iphone"/>
 						<Button title="screen" onPress={() => console.log(screenWidth)}/>
 						<Button title="gap" onPress={() => console.log(gapValue)}/>
 						<Button title="width" onPress={() => console.log(width)}/>

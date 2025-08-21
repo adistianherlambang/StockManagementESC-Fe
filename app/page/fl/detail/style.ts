@@ -5,7 +5,15 @@ const styles = StyleSheet.create({
         flex: 1,
         height: "100%",
         width: "100%",
-        paddingVertical: 488
+        gap: 16
+    },
+    topContainer: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#ff000',
+        paddingVertical: 8,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row'
     },
         searchContainer: {
         flexDirection: 'row',
