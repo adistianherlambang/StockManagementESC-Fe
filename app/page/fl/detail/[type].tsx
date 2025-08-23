@@ -34,7 +34,7 @@ export default function DetailPage() {
     const ambilData = async () => {
       try {
         //fetch all data
-        const res = await fetch("https://125b67597373.ngrok-free.app/data")
+        const res = await fetch("https://a4494eb1c13f.ngrok-free.app/data")
         const data = await res.json()
 
         //filter data (ambil sesuai tipe dari uselocalsearchparam expo router di page flpage)
@@ -48,12 +48,12 @@ export default function DetailPage() {
 
   const handleIncrement = async (tipe: string, amount: number) => {
     try {
-      const res = await axios.post ("https://125b67597373.ngrok-free.app/increment", {
+      const res = await axios.post ("https://a4494eb1c13f.ngrok-free.app/increment", {
         tipe,
         amount,
       })
       const updateItem = res.data
-      setJson(res.data)
+      setJson(prevJson => prevJson.map(item => item.tipe === updateItem.tipe ? updateItem : item))
     }
     catch(err){
       console.error(err)
