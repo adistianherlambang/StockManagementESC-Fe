@@ -21,7 +21,6 @@ interface BaseLayoutProps {
 
 export default function BaseLayout({ children }: BaseLayoutProps) {
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
       <SafeAreaView
         style={{
           flex: 1,
@@ -37,11 +36,12 @@ export default function BaseLayout({ children }: BaseLayoutProps) {
             }}
             keyboardShouldPersistTaps="handled"
           >
-            {children}
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
+              {children}
+            </TouchableWithoutFeedback>
           </ScrollView>
         </View>
       </SafeAreaView>
-    </TouchableWithoutFeedback>
   );
 }
 

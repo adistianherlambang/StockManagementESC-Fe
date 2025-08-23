@@ -3,7 +3,14 @@ import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet } from "rea
 import { useLocalSearchParams, router } from "expo-router";
 import { AnimatePresence, MotiView } from "moti";
 import {Svg, Path} from "react-native-svg";
+import axios from 'axios'
+
+//component
+import FLStock from "@/app/components/fl/Stock";
 import AddStock from "@/app/components/fl/AddStock";
+
+//base component
+import BaseView from "@/app/style/BaseView";
 import { TitleText } from "@/app/style/BaseView";
 
 // import styles from "./style";
@@ -11,12 +18,12 @@ import { TitleText } from "@/app/style/BaseView";
 //State
 import State from "@/app/hooks/toogleState";
 
-import BaseView from "@/app/style/BaseView";
-
 export default function DetailPage() {
 
+  //State
   const toogleAddStock = State(state => state.toogleAddStock)
   const setToogleAddStock = State(state => state.setToogleAddStock)
+  const [increment, setIncrement] = useState(0)
 
   const {type} = useLocalSearchParams()
 
@@ -26,8 +33,11 @@ export default function DetailPage() {
   useEffect(() => {
     const ambilData = async () => {
       try {
+        //fetch all data
         const res = await fetch("https://125b67597373.ngrok-free.app/data")
         const data = await res.json()
+
+        //filter data (ambil sesuai tipe dari uselocalsearchparam expo router di page flpage)
         const filtered = data.filter((p : any) => p.brand === type)
         setJson(filtered)
       }
@@ -36,9 +46,18 @@ export default function DetailPage() {
     ambilData()
   }, [type]) 
 
-  const handleButton = () => {
-    console.log(json)
-    router.back()
+  const handleIncrement = async (tipe: string, amount: number) => {
+    try {
+      const res = await axios.post ("https://125b67597373.ngrok-free.app/increment", {
+        tipe,
+        amount,
+      })
+      const updateItem = res.data
+      setJson(res.data)
+    }
+    catch(err){
+      console.error(err)
+    }
   }
 
   return(
@@ -81,16 +100,9 @@ export default function DetailPage() {
             <AddStock/>
           }
         </AnimatePresence>
-        {json.length > 0 ?
-          (json.map((item : any, index) => (
-            <View key={index}>
-              
-            </View>
-          )))
-          :
-          <Text>ga ada data</Text>
-        }
-        <Button title="bla" onPress={handleButton} />
+        <View style={styles.itemContainer}>
+          <FLStock data={json} onIncrement={(tipe) => handleIncrement(tipe, 1)} onDecrement={(tipe) => handleIncrement(tipe, -1)}/>
+        </View>
       </View>
     </BaseView>
   )
@@ -151,4 +163,29 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       borderRadius: 100
     },
+    itemContainer: {
+      gap: 16
+    },
+    itemWrapper: {
+      backgroundColor: '#773FF9',
+      borderRadius: 16,
+      paddingHorizontal: 24,
+      paddingVertical: 16
+    }, 
+    item: {
+      gap: 2
+    },
+    itemType: {
+      color: 'white',
+      fontWeight: 700,
+      fontSize: 16
+    },
+    itemWarna: {
+      color: '#ead8ffff',
+      fontSize: 12
+    },
+    itemWarnaSpan: {
+      color: 'white',
+      fontWeight: 700
+    }
 })

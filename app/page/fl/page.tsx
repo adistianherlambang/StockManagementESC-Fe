@@ -8,7 +8,6 @@ import { useState, useEffect } from "react";
 //Components
 import Profile from "@/app/components/Profile"
 import AddStock from "@/app/components/fl/AddStock";
-import FLStock from "@/app/components/fl/Stock";
 import { SamsungButton, XiaomiButton, VivoButton, OppoButton, RealmeButton, TecnoButton, IphoneButton, InfinixButton } from "@/app/components/fl/BrandButton"
 import DetailPage from "./detail/[type]";
 
@@ -55,7 +54,6 @@ export default function FlPage() {
 					</View>
 				</View>
 				<Text>Samsung</Text>
-				<FLStock/>
 				<DetailPage/>
 			</View>
 		</ScrollView>
