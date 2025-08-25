@@ -30,11 +30,13 @@ export default function DetailPage() {
   const [json, setJson] = useState<any[]>([])
   const [searchQuery, setSearchQuery] = useState<any>('')
 
+  const link = "https://c0c1cad5f09b.ngrok-free.app/"
+
   useEffect(() => {
     const ambilData = async () => {
-      try {
+      try { 
         //fetch all data
-        const res = await fetch("https://a4494eb1c13f.ngrok-free.app/data")
+        const res = await fetch(`${link}data`)
         const data = await res.json()
 
         //filter data (ambil sesuai tipe dari uselocalsearchparam expo router di page flpage)
@@ -46,14 +48,33 @@ export default function DetailPage() {
     ambilData()
   }, [type]) 
 
+  // useEffect(() => {
+  //   const ws = new WebSocket(`${link}`)
+  //   ws.onopen = () => {
+  //     console.log('websocket connected') 
+  //   }
+  //   ws.onmessage = (event) => {
+  //     const data = JSON.parse(event.data)
+  //     console.log('data realtine :', data)
+  //     const filtered = data.filter((p : any) => p.brand === type)
+  //   }
+  //   ws.onerror = (err) => {
+  //     console.error('ws failed :', err)
+  //   }
+  //   return () => {
+  //     ws.close()
+  //   }
+  // }, [])
+
   const handleIncrement = async (tipe: string, amount: number) => {
     try {
-      const res = await axios.post ("https://a4494eb1c13f.ngrok-free.app/increment", {
+      const res = await axios.post (`${link}increment`, {
         tipe,
         amount,
       })
       const updateItem = res.data
       setJson(prevJson => prevJson.map(item => item.tipe === updateItem.tipe ? updateItem : item))
+      console.log(json.map((item, index) => item.tipe))
     }
     catch(err){
       console.error(err)
